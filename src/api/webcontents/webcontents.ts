@@ -35,4 +35,8 @@ export class WebContents<T extends BaseEventMap> extends EmitterBase<T> {
     public stopNavigation(): Promise<void> {
         return this.wire.sendAction('stop-window-navigation', Object.assign({}, this.identity)).then(() => undefined);
     }
+
+    public async findInPage(text: string, options: Object): Promise<any> {
+        return this.wire.sendAction('found-in-page', Object.assign({}, this.identity, {text, options}))
+    }
 }
